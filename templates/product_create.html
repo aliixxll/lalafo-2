@@ -1,0 +1,47 @@
+{% extends 'homepage.html' %}
+{% load static %}
+{% block content %}
+{% include 'include/header.html' %}
+<div >
+  <div class="row">
+      <div class="col-lg-4 offset-xl-2">
+          <div>
+              <div class="axil-signin-form">
+                  <h3 class="title">Создать объявление</h3>
+                  <p class="b2 mb--55">Введите данные об объявление</p>
+                  <form class="singin-form" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group">
+                          <label>Заголовок продукта</label>
+                          <input type="text" class="form-control" name="title">
+                      </div>
+                      <div class="form-group">
+                          <label>Описание</label>
+                          <input type="password" class="form-control" name="description">
+                      </div>
+                      <div class="form-group">
+                        <label>Фотография</label>
+                        <input type="file" class="form-control" name="image">
+                    </div>
+                    <div class="form-group">
+                      <label>Цена</label>
+                      <input type="number" class="form-control" name="price">
+                  </div>
+                  <div class="form-group">
+                    <label>Валюта</label>
+                    <select  class="form-control" name="currency">
+                        {% for cur in currency %}
+                        <option value = '{{ cur.id}}'>{{cur.title}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                      <div class="form-group d-flex align-items-center justify-content-between">
+                          <button type="submit" class="axil-btn btn-bg-primary submit-btn">Опубликовать</button>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+{%endblock%}
