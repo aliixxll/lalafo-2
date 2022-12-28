@@ -21,6 +21,16 @@ def product_detail(request,id):
   }
   return render(request, 'single-product.html', context)
 
+def product_index(request):
+  setting = Setting.objects.latest('id')
+  products = Product.objects.all()
+  
+  context = {
+    'setting' : setting,
+    'products' : products,
+  }
+  return render(request, 'shop.html', context)
+
 def product_create(request):
   setting = Setting.objects.latest('id')
   currency = Currency.objects.all()
